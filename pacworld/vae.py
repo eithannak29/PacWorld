@@ -47,7 +47,6 @@ class VAE(nn.Module):
 input_dim = 28 * 28  
 latent_dim = 32
 
-# Créer une instance de VAE
 vae = VAE(input_dim=input_dim, latent_dim=latent_dim)
 
 x = torch.randn(1, input_dim)
