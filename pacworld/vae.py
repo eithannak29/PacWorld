@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from torchviz import make_dot
 
 # This VAE (Variational Autoencoder) class is used to encode and decode observations 
@@ -34,7 +35,12 @@ class VAE(nn.Module):
         mean, log_var = self.encode(x)
         z = self.reparameterize(mean, log_var)
         return self.decoder(z), mean, log_var
-
+      
+    def loss_function(self, recon_x, x, mean, log_var):
+        recon_loss = F.binary_cross_entropy(recon_x, x, reduction='sum')
+        kl_div = -0.5 * torch.sum(1 + log_var - mean.pow(2) - log_var.exp())
+        return recon_loss + kl_div
+      
 
 
 # Test the VAE model
