@@ -6,5 +6,9 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "ale-py>=0.10.1",
+    "graphviz>=0.20.3",
     "gymnasium>=1.0.0",
+    "numpy>=2.1.2",
+    "torch>=2.4.1",
+    "torchviz>=0.0.2",
 ]
